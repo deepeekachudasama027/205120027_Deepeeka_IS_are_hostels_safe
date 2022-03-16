@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" href="/catalog/favicon.ico?v=10">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/form.css">
+
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+ <div class="logo">
+     <a href="/" class="navbar-brand animated flip"><img src="../image/logo.png" alt="" width="100px" height="90px"></a>
+    </div>
+        <div>
+            <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+        </div>
+
+
+        <div class="navbar-links">
+            <ul>
+                <li><a href="/student_registration" >Registration</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+
+        <form action="student_auth" class="box" method="POST">
+            <h1 class="event-page">Welcome</h1>
+            <input type="text" name="rollno" placeholder="Roll Number" pattern="\d*" autocomplete="off" minlength="9"
+                maxlength="9" required>
+            <input type="Password" name="password" placeholder="Password" required>
+            <input type="Submit" value="Login">
+            <div id='status' class='invisible'>{{message }}</div>
+        </form>
+    </div>
+
+
+    <script>
+        const toggleButton = document.getElementsByClassName('toggle-button')[0]
+        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+        toggleButton.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active')
+        })
+
+        if ($('div#status').text() != '') {
+            var msg = $('div#status').text()
+            if (msg == 'Logout Successful!') {
+                swal.fire({
+                    icon: "Success",
+                    title: "Message",
+                    text: msg
+                });
+            }
+            else if (msg == 'Invalid Credentials!') {
+                swal.fire({
+                    icon: "warning",
+                    title: "Message",
+                    text: msg
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>

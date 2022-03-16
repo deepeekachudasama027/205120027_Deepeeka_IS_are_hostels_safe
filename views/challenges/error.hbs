@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error page</title>
+    <link rel="icon" href="../image/template/logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Yatra+One&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Wallpoet&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+        * {
+            font-family: "Montserrat";
+        }
+
+        body {
+            background-color: rgb(13, 51, 51);
+            );
+        }
+
+        .image {
+            width: 55vw;
+            height: 70vh;
+            position: relative;
+            display: block;
+            margin: 0 auto;
+        }
+
+
+        .main {
+            margin-top: 5rem;
+        }
+
+        .event-page {
+            font-size: 18vh;
+            color: white;
+            text-align: center;
+           
+        }
+
+        #page {
+            color: white;
+            font-size: 5vh;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <nav class="navbar">
+ <div class="logo">
+      <a href="/" class="navbar-brand animated flip"><img src="../image/logo.png" alt="" width="100px" height="90px"></a>
+    </div>
+        <div>
+            <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+        </div>
+    </nav>
+    <div class="main">
+        <h1 class="event-page"> 404 </h1>
+        <center>
+            <h2 id="page"> Page not found </h2>
+
+        </center>
+
+    </div>
+    <script>
+        const toggleButton = document.getElementsByClassName('toggle-button')[0]
+        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+        toggleButton.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active')
+        })
+    </script>
+
+</body>
+
+</html>
