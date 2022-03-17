@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login</title>
+    <title>Verification</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shortcut icon" href="/catalog/favicon.ico?v=10">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -42,18 +42,21 @@
 
         <div class="navbar-links">
             <ul>
-                <li><a href="/registration" >Registration</a></li>
-            </ul>
+                <li><a href="/logout" >Logout</a></li>
+            
+            <li>
+          <h1 id="empid">{{empid}}</h1>
+        </li>
+        </ul>
         </div>
     </nav>
     <div>
 
-        <form action="auth" class="box" method="POST">
-            <h1 class="event-page">Welcome</h1>
-            <input type="text" name="rollno" placeholder="Roll Number" pattern="\d*" autocomplete="off" minlength="9"
-                maxlength="9" required>
-            <input type="Password" name="password" placeholder="Password" required>
-            <input type="Submit" value="Login">
+        <form action="verify" class="box" method="POST">
+            <h1 class="event-page">Verification</h1>
+            <input type="text" name="rollno" placeholder="Enter Student Roll Number" pattern="\d*" autocomplete="off" minlength="9" maxlength="9" required>
+            <input type="Password" name="otp" placeholder="Enter Generated Seurity Number" required>
+            <input type="Submit" value="Verify">
             <div id='status' class='invisible'>{{message }}</div>
         </form>
     </div>

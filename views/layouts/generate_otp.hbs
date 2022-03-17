@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Generate Entry Pass</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" href="/catalog/favicon.ico?v=10">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+        body {
+            font-family: "Montserrat";
+            background-color: rgb(13, 51, 51);
+        }
+
+        .event-page {
+            margin-top: 1rem;
+            font-size: 3vw;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 0.3rem;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .box {
+            font-family: "Montserrat" !important;
+            width: 600px;
+            height: 600px;
+            padding: 40px;
+            position: relative;
+            top: 300px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 5%;
+            text-align: center;
+
+        }
+
+
+        .box input[type="submit"] {
+            border: 0;
+            background: none;
+            display: block;
+            height: 70px;
+            margin-top: 40px;
+            margin-left: 32%;
+
+            text-align: center;
+
+            border: 2px solid #2ecc71;
+
+            padding: 10px 40px;
+
+            outline: none;
+
+            color: white;
+
+            border-radius: 50px;
+
+            transition: 0.25s;
+
+            cursor: pointer;
+        }
+
+        .box input[type="submit"]:hover {
+            background: #2ecc71;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/" class="navbar-brand animated flip"><img src="../image/logo.png" alt="" width="100px"
+                    height="90px"></a>
+           <div class="navbar-links">
+      <ul>
+        <li><a href="/logout">Logout</a></li>
+        <li>
+          <h1 id="roll">{{rollno}}</h1>
+        </li>
+      </ul>
+    </div>
+    </nav>
+    <div>
+        <h1 class="event-page">Generate Entry Pass</h1>
+        <form action="generate" class="box" method="post">
+            <input type="email" name="email" placeholder="Enter Email ID" autocomplete="off" maxlength="50" required>
+            <p style="font-size:small;color:antiquewhite">Generated Entry key will be mailed to entered mail</p>
+            <input type="Submit" value="Generate">
+        </form>
+    </div>
+</body>
+
+</html>

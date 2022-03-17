@@ -23,9 +23,9 @@ app.engine(
   "handlebars",
   engine({
     extname: ".hbs",
-    defaultLayout: "login",
+    defaultLayout: "choose",
     layoutsDir: __dirname + "/views/layouts/",
-    challengesDir: __dirname + "/views/challenges/",
+    // challengesDir: __dirname + "/views/challenges/",
   })
 );
 
