@@ -49,20 +49,24 @@ exports.security_getdetails = async (req, res, next) => {
       } else {
         const salt = await bcrypt.genSalt(10);
         const hashpassword = await bcrypt.hash(req.body.password, salt);
-        const hashkey = await bcrypt.hash(req.body.key, salt);
-        const updatedata = await Eupdatedetails(
-          req.body.rollno,
-          hashpassword,
-          req.body.name,
-          req.body.email,
-          hashkey,
-          req.body.contactno
-        )
-        if(updatedata){
-          res.render("layouts/security_registration", {
-            message: "Successfully Registered!",
+        if(req.body.key == process.env.EMPLOYEE_KEY)
+          {
+            const updatedata = await Eupdatedetails(
+              req.body.rollno,
+              hashpassword,
+              req.body.name,
+              req.body.email,
+              req.body.contactno
+            )
+            if(updatedata){
+              res.render("layouts/security_registration", {
+                message: "Successfully Registered!",
+              })
+            }
+          }
+          else  res.render("layouts/security_registration", {
+            message: "Invalid Credentials!",
           })
-        }
        
       }
     } else  res.render("layouts/security_registration", {

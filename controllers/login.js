@@ -91,27 +91,17 @@ exports.security_login = async (request, response, next) => {
   try {
     var empid = request.body.empid;
     var password = request.body.password;
-    var key = request.body.key;
-    if (`${empid}`.length === 9 && password && key) {
+    if (`${empid}`.length === 9 && password ) {
       const getempid = await Eselectempid(empid);
       if (getempid.rowCount > 0) {
         const isMatch = await bcrypt.compare( password,getrollno.rows[0].password);
         if(isMatch){
-          const isKeymatch = await bcrypt.compare( key,getrollno.rows[0].key);
-          if(isKeymatch){
             request.session.loggedIn = true;
             request.session.role= "security";
         request.session.empid = getempid.rows[0].empid;
         response.render("layouts/verification",{
           empid: request.session.empid
         })
-          }
-         else
-         {
-          response.render("layouts/security_login", {
-            message: "Invalid Credentials!",
-          });
-         }
         }
         else
         {
@@ -153,7 +143,7 @@ exports.verify = async (request, response, next) => {
 };
 
 
-exports.verify = async (request, response, next) => {
+exports.generate_otp = async (request, response, next) => {
   try {
     if (request.session.loggedIn) {
         const getmain = await mainpage(request.session.rollno);
