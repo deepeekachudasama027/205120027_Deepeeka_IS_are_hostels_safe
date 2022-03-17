@@ -100,8 +100,24 @@
         <form class="box" method="get">
             <input type="Submit" value="Security" formaction="security_login">
             <input type="Submit" value="Student" formaction="student_login">
+            <div id='status' class='invisible'>{{message }}</div>
         </form>
     </div>
+
+
+    <script>
+        if ($('div#status').text() != '') {
+            var msg = $('div#status').text()
+            if (msg == 'Logout Successful!') {
+                swal.fire({
+                    icon: "Success",
+                    title: "Message",
+                    text: msg
+                });
+            }
+            
+        }
+    </script>
 </body>
 
 </html>

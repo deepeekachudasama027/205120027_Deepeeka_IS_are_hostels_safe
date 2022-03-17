@@ -40,13 +40,13 @@ router.get("/security_registration", (req, res) => {
   res.render("layouts/security_registration");
 });
 
-router.get("/registration", (req, res) => {
-    res.render("layouts/registration");
-  });
+// router.get("/registration", (req, res) => {
+//     res.render("layouts/registration");
+//   });
 
   router.post("/student_register", student_getdetails);
 
-  router.post("/secutiy_register", security_getdetails);
+  router.post("/security_register", security_getdetails);
   
 
 router.get("/*", (request, response) => {

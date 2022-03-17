@@ -1,6 +1,6 @@
 const { Pool } = require("pg");
 var config = {
-  connectionString: "postgresql://postgres:Postgres@1485@localhost:5432/205120027_IS_are_hostels_safe",
+  connectionString: process.env.DATABASE_URL,
  ssl: { rejectUnauthorized: false },
  ssl:false,
   max: 10,

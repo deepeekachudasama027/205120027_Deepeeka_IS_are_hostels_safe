@@ -39,11 +39,11 @@ exports.getmainpage=async(request, response, next) => {
 exports.choose_role = async (request, response, next) => {
   try {
     if (request.session.loggedIn)   
-      request.redirect("/logout");
+      response.redirect("/logout");
       
-     else {
+     else 
       response.render("layouts/choose");
-    }
+    
   } catch (err) {
     console.log(err);
   }
@@ -94,7 +94,7 @@ exports.security_login = async (request, response, next) => {
     if (`${empid}`.length === 9 && password ) {
       const getempid = await Eselectempid(empid);
       if (getempid.rowCount > 0) {
-        const isMatch = await bcrypt.compare( password,getrollno.rows[0].password);
+        const isMatch = await bcrypt.compare( password,getempid.rows[0].password);
         if(isMatch){
             request.session.loggedIn = true;
             request.session.role= "security";
@@ -162,30 +162,12 @@ exports.generate_otp = async (request, response, next) => {
 };
 
 
-// exports.getdata = async (request, response, next) => {
-//   try {
-//     if (request.session.loggedIn) {
-//         const getmain = await mainpage(request.session.rollno);
-//         response.render("layout/main", {
-//           rollno: getmain.rows[0].rollno,
-//         });
-      
-//     } else {
-//       response.render("layouts/login", {
-//         message: "",
-//       });
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
 
 exports.logout = async (request, response, next) => {
   try {
     request.session.loggedIn = false;
     request.session.role= "";
-    response.render("layouts/login", {
+    response.render("layouts/choose", {
       message: "Logout Successful!",
     });
   } catch (err) {

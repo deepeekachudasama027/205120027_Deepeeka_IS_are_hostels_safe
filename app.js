@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const { engine } = require('express-handlebars');
 const path = require("path");
@@ -46,6 +48,8 @@ app.use(
 app.use(errorHandler);
 app.use(cors());
 app.use(router);
+
+
 
 app.listen(3000, () => {
   console.log("Hashing Algorithm Application.....");

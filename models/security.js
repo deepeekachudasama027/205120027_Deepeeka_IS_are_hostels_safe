@@ -1,7 +1,7 @@
 var pool = require("../controllers/db");
 
 pool.query(
-  "CREATE TABLE IF NOT EXISTS security (empid varchar (9) PRIMARY KEY ,password varchar (500),name varchar (50),email varchar (50), contactno int)",
+  "CREATE TABLE IF NOT EXISTS security (empid varchar (9) PRIMARY KEY ,password varchar (500),name varchar (50),email varchar (50), contactno bigint)",
   (err, result) => {
     if (err) console.log(err);
   }

@@ -52,7 +52,7 @@ exports.security_getdetails = async (req, res, next) => {
         if(req.body.key == process.env.EMPLOYEE_KEY)
           {
             const updatedata = await Eupdatedetails(
-              req.body.rollno,
+              req.body.empid,
               hashpassword,
               req.body.name,
               req.body.email,
