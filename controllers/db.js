@@ -1,7 +1,6 @@
 const { Pool } = require("pg");
 var config = {
-  connectionString:
-    "postgresql://postgres:Postgres@1485@localhost:5432/205120027_ISLab_Hash_app",
+  connectionString: process.env.DATABASE_URL,
  ssl: { rejectUnauthorized: false },
  ssl:false,
   max: 10,
