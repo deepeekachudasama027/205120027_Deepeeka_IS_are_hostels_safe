@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Visitor Details</title>
-    <meta
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-      name="viewport"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-      integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Visitor Details</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-    <link rel="stylesheet" href="../css/form.css" />
-    <link rel="stylesheet" href="../css/navbar.css" />
-  </head>
+  <link rel="stylesheet" href="../css/form.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+</head>
 
-  <body>
+<body>
 
   <nav class="navbar">
-     <div class="logo">
-      <a href="/" class="navbar-brand animated flip"><img src="../image/logo.png" alt="" width="100px" height="90px"></a>
+    <div class="logo">
+      <a href="/" class="navbar-brand animated flip"><img src="../image/logo.png" alt="" width="100px"
+          height="90px"></a>
     </div>
     <div>
       <a href="#" class="toggle-button">
@@ -39,50 +34,52 @@
       </a>
     </div>
 
-  <div class="navbar-links">
-            <ul>
-                 <li>
+    <div class="navbar-links">
+      <ul>
+        <li>
           <h1 id="empid">{{empid}}</h1>
         </li>
-                <li><a href="/logout" >Logout</a></li>
-            
-           
-        </ul>
-        </div>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
   </nav>
-        <div>
+  <div>
     <form class="box" method="POST" action="visitor">
       <h1 class="event-page">Visitor Details</h1>
-      <input type="text" name="name"  placeholder="Visitor Name" autocomplete="off" autocapitalize="on" maxlength="100" required />
-      <input type="text"  name="studentrollno" placeholder="Enter Student Roll no" autocomplete="off" pattern="\d*" minlength="9"
-        maxlength="9" required />
-          <input type="text" name="work"  placeholder="Work in hostel" autocomplete="off" autocapitalize="on" maxlength="200" required />
-          <input type="text" pattern="\d*" name="contactno" placeholder="Contact Number" autocomplete="off" maxlength="10" minlength="10" required>
-       
+      <input type="text" name="name" placeholder="Visitor Name" autocomplete="off" autocapitalize="on" maxlength="100"
+        required />
+      <input type="text" name="studentrollno" placeholder="Enter Student Roll no" autocomplete="off" pattern="\d*"
+        minlength="9" maxlength="9" required />
+      <input type="text" name="work" placeholder="Work in hostel" autocomplete="off" autocapitalize="on" maxlength="200"
+        required />
+      <input type="text" pattern="\d*" name="contactno" placeholder="Contact Number" autocomplete="off" maxlength="10"
+        minlength="10" required>
+
       <input type="Submit" name="register" value="Submit" />
-       <div id='status' class='invisible'>{{message}}</div>
+      <div id='status' class='invisible'>{{message}}</div>
     </form>
-  
+
   </div>
 
-    <script>
-      
-      const toggleButton = document.getElementsByClassName("toggle-button")[0];
-      const navbarLinks = document.getElementsByClassName("navbar-links")[0];
+  <script>
 
-      toggleButton.addEventListener("click", () => {
-        navbarLinks.classList.toggle("active");
-      });
+    const toggleButton = document.getElementsByClassName("toggle-button")[0];
+    const navbarLinks = document.getElementsByClassName("navbar-links")[0];
 
-     if ($('div#status').text() != '') {
+    toggleButton.addEventListener("click", () => {
+      navbarLinks.classList.toggle("active");
+    });
+
+    if ($('div#status').text() != '') {
       var msg = $('div#status').text()
       if (msg == 'Successfully Submitted!') {
         swal.fire({
           icon: "success",
           title: "Message",
           text: msg
-        }); }
-        else if (msg == 'Invalid Credentials!') {
+        });
+      }
+      else if (msg == 'Invalid Credentials!') {
         swal.fire({
           icon: "Warning",
           title: "Message",
@@ -90,26 +87,8 @@
         });
       }
     } 
-    </script>
-    </script>
-  </body>
+  </script>
+  </script>
+</body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

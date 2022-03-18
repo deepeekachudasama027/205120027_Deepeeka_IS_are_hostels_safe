@@ -27,7 +27,6 @@ app.engine(
     extname: ".hbs",
     defaultLayout: "choose",
     layoutsDir: __dirname + "/views/layouts/",
-    // challengesDir: __dirname + "/views/challenges/",
   })
 );
 

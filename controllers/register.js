@@ -2,6 +2,7 @@ const { Sgetrollno, Supdatedetails, Sgetemail } = require("../models/student");
 const { Egetempid, Eupdatedetails, Egetemail } = require("../models/security");
 const bcrypt = require("bcryptjs");
 
+// Student Registration
 exports.student_getdetails = async (request, response, next) => {
   try {
     if (
@@ -44,6 +45,8 @@ exports.student_getdetails = async (request, response, next) => {
   }
 };
 
+
+// Security Registration
 exports.security_getdetails = async (request, response, next) => {
   try {
     if (
