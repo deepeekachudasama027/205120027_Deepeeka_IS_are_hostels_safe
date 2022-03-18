@@ -49,44 +49,19 @@ body {
   width: 600px;
   padding: 40px;
   position: relative;
-  top: 240px;
+  top: 150px;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: black;
-  border-radius: 5%;
   text-align: center;
-  box-shadow: 3px 3px 5px 6px rgba(217, 222, 228, 0.3);
+ 
 }
 
-
-
-.box input[type="text"],
-.box input[type="password"],.box input[type="email"] {
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #3498db;
-  padding: 14px 10px;
-  width: 250px;
-  height: 45px;
-  outline: none;
-  color: white;
-  border-radius: 50px;
-  transition: 0.25s;
-}
-
-.box input[type="text"]:focus,
-.box input[type="password"]:focus,.box input[type="email"]:focus {
-  width: 300px;
-}
 
 .box input[type="submit"] {
   border: 0;
   background: none;
   display: block;
-  height: 50px;
+  height: 70px;
   margin-top: 5px;
   margin-left: 37%;
   text-align: center;
@@ -127,12 +102,38 @@ body {
     <div>
         <h1 class="event-page">Generate Entry Pass</h1>
         <form action="generate" class="box" method="post">
-            <input type="email" name="email" placeholder="Enter Email ID" autocomplete="off" maxlength="50" required>
-            
             <input type="Submit" value="Generate">
-            <p style="font-size:smaller;color:antiquewhite; margin-top: 30px;">*Generated Entry key will be mailed to entered mail</p>
+             <div id='status' class='invisible'>{{message }}</div>
         </form>
     </div>
+     <script>
+        const toggleButton = document.getElementsByClassName('toggle-button')[0]
+        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+        toggleButton.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active')
+        })
+
+        if ($('div#status').text() != '') {
+            var msg = $('div#status').text()
+            console.log(msg)
+            if (msg == 'Something wrong happened!') {
+                swal.fire({
+                    icon: "warning",
+                    title: "Error",
+                    text: msg
+                });
+            }
+            else {
+              console.log(msg)
+                swal.fire({
+                    icon: "Success",
+                    title: "Security Key",
+                    text: msg
+                });
+            }   
+        }
+    </script>
 </body>
 
 </html>

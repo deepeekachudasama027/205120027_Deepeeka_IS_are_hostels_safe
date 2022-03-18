@@ -5,6 +5,7 @@ const {
   student_login,
   getmainpage,
   logout,
+  generate_otp,
 } = require("../controllers/login");
 const { student_getdetails,
   security_getdetails} = require("../controllers/register")
@@ -47,6 +48,8 @@ router.get("/security_registration", (req, res) => {
   router.post("/student_register", student_getdetails);
 
   router.post("/security_register", security_getdetails);
+
+  router.post("/generate",generate_otp)
   
 
 router.get("/*", (request, response) => {

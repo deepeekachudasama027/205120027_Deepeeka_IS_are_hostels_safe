@@ -1,4 +1,7 @@
 const bcrypt = require("bcryptjs");
+var otpGenerator = require("otp-generator")
+
+
 const {
   Egetemail,
   Egetempid,
@@ -15,6 +18,10 @@ const {
   Smainpage
 } = require("../models/student");
 
+const {
+Ogetrollno,
+Oupdatedetails
+} = require("../models/otp");
 
 exports.getmainpage=async(request, response, next) => {
   try {
@@ -124,6 +131,52 @@ exports.security_login = async (request, response, next) => {
   }
 };
 
+exports.generate_otp = async (request, response, next) => {
+  try {
+    if (request.session.loggedIn) {
+        const generatedOTP = otpGenerator.generate(6,{upperCase:false,specialChars:false,alphabets:false});
+        const salt = await bcrypt.genSalt(10);
+        const hashOTP = await bcrypt.hash(generatedOTP, salt);
+        var now = new Date().getTime();
+
+      if(hashOTP){
+        const updatedata = await Oupdatedetails(
+          request.session.rollno,
+          hashOTP,
+          now
+        )
+        if(updatedata){
+          response.render("layouts/generate_otp", {
+            rollno:request.session.rollno,
+            message: "generatedOTP",
+          })
+        }
+        else{
+          response.render("layouts/generate_otp", {
+            rollno:request.session.rollno,
+            message: "Something wrong happened!",
+          })
+        }
+      }
+      else{
+        response.render("layouts/generate_otp", {
+          rollno:request.session.rollno,
+          message: "Something wrong happened!",
+        })
+      }
+        
+      
+    } else {
+      response.render("layouts/student_login", {
+        message: "",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
 exports.verify = async (request, response, next) => {
   try {
     if (request.session.loggedIn) {
@@ -143,23 +196,7 @@ exports.verify = async (request, response, next) => {
 };
 
 
-exports.generate_otp = async (request, response, next) => {
-  try {
-    if (request.session.loggedIn) {
-        const getmain = await mainpage(request.session.rollno);
-        response.render("layout/main", {
-          rollno: getmain.rows[0].rollno,
-        });
-      
-    } else {
-      response.render("layouts/login", {
-        message: "",
-      });
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
+
 
 
 
