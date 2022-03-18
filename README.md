@@ -50,7 +50,7 @@ Follow the steps to Install the project
 
 `Run the command given below to install node-modules needed`
 
-**npm i express express-session express-handlebars cors dotenv hbs mysql2 path sweetalert2 nodemon bcryptjs otp-generator**
+**npm i express express-session express-handlebars cors dotenv hbs pg path sweetalert2 nodemon bcryptjs otp-generator**
  
 `then to get package.json file in your project run:`
 
