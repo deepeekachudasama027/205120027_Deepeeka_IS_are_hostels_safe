@@ -47,6 +47,7 @@ router.get("/security_registration", (req, res) => {
 
   router.post("/verify",verify)
   
+router.post ("/visitor",visitor_details);
 
 router.get("/*", (request, response) => {
   response.render("layouts/error");

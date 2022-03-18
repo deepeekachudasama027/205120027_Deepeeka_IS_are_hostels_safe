@@ -40,10 +40,3 @@ exports.Sselectrollno = (rollno, callback) => {
 };
 
 
-exports.Smainpage = (rollno, callback) => {
-  return pool.query(
-    "select rollno FROM student where rollno=$1",
-    [rollno],
-    callback
-  );
-};

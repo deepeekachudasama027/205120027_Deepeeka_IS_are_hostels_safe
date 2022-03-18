@@ -30,20 +30,3 @@ exports.Odatetimediff = (rollno,callback) => {
     callback
   );
 };
-
-// exports.Sselectrollno = (rollno, callback) => {
-//   return pool.query(
-//     "select rollno,password from  student WHERE rollno = $1 ",
-//     [rollno],
-//     callback
-//   );
-// };
-
-
-// exports.Smainpage = (rollno, callback) => {
-//   return pool.query(
-//     "select rollno FROM student where rollno=$1",
-//     [rollno],
-//     callback
-//   );
-// };

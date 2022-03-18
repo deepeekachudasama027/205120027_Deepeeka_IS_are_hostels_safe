@@ -39,11 +39,3 @@ exports.Eselectempid = (empid, callback) => {
   );
 };
 
-
-exports.Emainpage = (empid, callback) => {
-  return pool.query(
-    "select empid FROM security where empid=$1",
-    [empid],
-    callback
-  );
-};

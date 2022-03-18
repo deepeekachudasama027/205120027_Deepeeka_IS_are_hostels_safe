@@ -2,33 +2,33 @@ const { Sgetrollno, Supdatedetails,Sgetemail } = require("../models/student");
 const { Egetempid, Eupdatedetails,Egetemail } = require("../models/security");
 const bcrypt = require("bcryptjs");
 
-exports.student_getdetails = async (req, res, next) => {
+exports.student_getdetails = async (request, response, next) => {
   try {
-    if (req.body.rollno>=100000000 && `${req.body.rollno}`.length === 9 && req.body.password && req.body.name && req.body.email && isNaN(req.body.name) && `${req.body.contactno}`.length === 10) {
-      const getdata = await Sgetrollno(req.body.rollno);
-      const getdata_email = await Sgetemail(req.body.email);
+    if (request.body.rollno>=100000000 && `${request.body.rollno}`.length === 9 && request.body.password && request.body.name && request.body.email && isNaN(request.body.name) && `${request.body.contactno}`.length === 10) {
+      const getdata = await Sgetrollno(request.body.rollno);
+      const getdata_email = await Sgetemail(request.body.email);
       if (getdata.rowCount > 0 || getdata_email.rowCount > 0) {
-        res.render("layouts/student_registration", {
+        response.render("layouts/student_registration", {
           message: "User already exists!",
         })
       } else {
         const salt = await bcrypt.genSalt(10);
-        const hashpassword = await bcrypt.hash(req.body.password, salt);
+        const hashpassword = await bcrypt.hash(request.body.password, salt);
         const updatedata = await Supdatedetails(
-          req.body.rollno,
+          request.body.rollno,
           hashpassword,
-          req.body.name,
-          req.body.email,
-          req.body.contactno
+          request.body.name,
+          request.body.email,
+          request.body.contactno
         )
         if(updatedata){
-          res.render("layouts/student_registration", {
+          response.render("layouts/student_registration", {
             message: "Successfully Registered!",
           })
         }
        
       }
-    } else  res.render("layouts/student_registration", {
+    } else  response.render("layouts/student_registration", {
       message: "Invalid Credentials!",
     })
   } catch (err) {
@@ -37,39 +37,39 @@ exports.student_getdetails = async (req, res, next) => {
 };
 
 
-exports.security_getdetails = async (req, res, next) => {
+exports.security_getdetails = async (request, response, next) => {
   try {
-    if ( `${req.body.empid}`.length === 9 && req.body.password && req.body.name && req.body.email && req.body.key && isNaN(req.body.name) && `${req.body.contactno}`.length === 10) {
-      const getdata = await Egetempid(req.body.empid);
-      const getdata_email = await Egetemail(req.body.email);
+    if ( `${request.body.empid}`.length === 9 && request.body.password && request.body.name && request.body.email && request.body.key && isNaN(request.body.name) && `${request.body.contactno}`.length === 10) {
+      const getdata = await Egetempid(request.body.empid);
+      const getdata_email = await Egetemail(request.body.email);
       if (getdata.rowCount > 0 || getdata_email.rowCount > 0) {
-        res.render("layouts/security_registration", {
+        response.render("layouts/security_registration", {
           message: "User already exists!",
         })
       } else {
         const salt = await bcrypt.genSalt(10);
-        const hashpassword = await bcrypt.hash(req.body.password, salt);
-        if(req.body.key == process.env.EMPLOYEE_KEY)
+        const hashpassword = await bcrypt.hash(request.body.password, salt);
+        if(request.body.key == process.env.EMPLOYEE_KEY)
           {
             const updatedata = await Eupdatedetails(
-              req.body.empid,
+              request.body.empid,
               hashpassword,
-              req.body.name,
-              req.body.email,
-              req.body.contactno
+              request.body.name,
+              request.body.email,
+              request.body.contactno
             )
             if(updatedata){
-              res.render("layouts/security_registration", {
+              response.render("layouts/security_registration", {
                 message: "Successfully Registered!",
               })
             }
           }
-          else  res.render("layouts/security_registration", {
+          else  response.render("layouts/security_registration", {
             message: "Invalid Credentials!",
           })
        
       }
-    } else  res.render("layouts/security_registration", {
+    } else  response.render("layouts/security_registration", {
       message: "Invalid Credentials!",
     })
   } catch (err) {

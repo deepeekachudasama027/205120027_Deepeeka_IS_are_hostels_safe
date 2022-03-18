@@ -3,19 +3,11 @@ var otpGenerator = require("otp-generator")
 
 
 const {
-  Egetemail,
-  Egetempid,
-  Eupdatedetails,
   Eselectempid,
-  Emainpage
 } = require("../models/security");
 
 const {
-  Sgetemail,
-  Sgetrollno,
-  Supdatedetails,
   Sselectrollno,
-  Smainpage
 } = require("../models/student");
 
 const {
@@ -181,9 +173,9 @@ exports.verify = async (request, response, next) => {
         if (getdata.rowCount > 0) {
           const getdiff = await Odatetimediff(request.body.rollno);
          if(getdiff.rowCount >0) {
-          response.render("layouts/verification", {
+          response.render("layouts/vistor_details", {
             rollno:request.session.empid,
-            message: "Verified!",
+            message: "",
           })
         
          }
@@ -197,6 +189,39 @@ exports.verify = async (request, response, next) => {
         
         }
 
+      
+    } else {
+      response.render("layouts/security_login", {
+        message: "",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.visitor_details = async (request, response, next) => {
+  try {
+    if (request.session.loggedIn) {
+      if (request.body.studentrollno>=100000000 && `${request.body.studentrollno}`.length === 9 && request.body.name && request.body.work && isNaN(request.body.name) && `${request.body.contactno}`.length === 10) {
+          const updatedata = await Vupdatedetails(
+            
+            request.body.name,
+            request.body.contactno,
+            request.body.studentrollno,
+            request.body.work,
+            
+          )
+          if(updatedata){
+            response.render("layouts/visitor_details", {
+              message: "Successfully Submitted!",
+            })
+          }
+         
+        
+      } else  response.render("layouts/visitor_details", {
+        message: "Invalid Credentials!",
+      })
       
     } else {
       response.render("layouts/security_login", {
