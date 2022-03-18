@@ -7,12 +7,17 @@ pool.query(
   }
 );
 
-
-exports.Vupdatedetails = (entrytime,name,contactno,studentrollno,work, callback) => {
+exports.Vupdatedetails = (
+  entrytime,
+  name,
+  contactno,
+  studentrollno,
+  work,
+  callback
+) => {
   return pool.query(
     "Insert into visitor (entrytime,name,contactno,studentrollno,work) values (NOW(),$1,$2,$3,$4) on conflict do nothing ",
-    [entrytime,name,contactno,studentrollno,work],
+    [entrytime, name, contactno, studentrollno, work],
     callback
   );
 };
-

@@ -23,10 +23,17 @@ exports.Sgetrollno = (rollno, callback) => {
   );
 };
 
-exports.Supdatedetails = (rollno, password, name, email,contactno, callback) => {
+exports.Supdatedetails = (
+  rollno,
+  password,
+  name,
+  email,
+  contactno,
+  callback
+) => {
   return pool.query(
     "Insert into student (rollno,password,name,email,contactno) values ($1,$2,$3,$4,$5) on conflict do nothing ",
-    [rollno, password, name,email,contactno],
+    [rollno, password, name, email, contactno],
     callback
   );
 };
@@ -38,5 +45,3 @@ exports.Sselectrollno = (rollno, callback) => {
     callback
   );
 };
-
-

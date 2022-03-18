@@ -23,10 +23,17 @@ exports.Egetempid = (empid, callback) => {
   );
 };
 
-exports.Eupdatedetails = (empid, password, name, email, contactno, callback) => {
+exports.Eupdatedetails = (
+  empid,
+  password,
+  name,
+  email,
+  contactno,
+  callback
+) => {
   return pool.query(
     "Insert into security (empid,password,name,email,contactno) values ($1,$2,$3,$4,$5) on conflict do nothing ",
-    [empid, password, name,email,contactno],
+    [empid, password, name, email, contactno],
     callback
   );
 };
@@ -38,4 +45,3 @@ exports.Eselectempid = (empid, callback) => {
     callback
   );
 };
-

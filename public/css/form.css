@@ -22,14 +22,12 @@ body {
 }
 
 .content {
-
-    margin-top: 2rem;
-    font-size: 2vw;
-    color: #fff;
-    text-align: center;
-    letter-spacing: 0.3rem;
-    font-family: "Montserrat", sans-serif;
-  
+  margin-top: 2rem;
+  font-size: 2vw;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.3rem;
+  font-family: "Montserrat", sans-serif;
 }
 
 .box {
@@ -55,7 +53,9 @@ body {
 }
 
 .box input[type="text"],
-.box input[type="password"],.box input[type="email"],.box input[type="number"] {
+.box input[type="password"],
+.box input[type="email"],
+.box input[type="number"] {
   border: 0;
   background: none;
   display: block;
@@ -72,7 +72,9 @@ body {
 }
 
 .box input[type="text"]:focus,
-.box input[type="password"]:focus,.box input[type="email"],.box input[type="number"]:focus {
+.box input[type="password"]:focus,
+.box input[type="email"],
+.box input[type="number"]:focus {
   width: 280px;
 }
 
@@ -139,5 +141,4 @@ input[type="number"] {
     margin-top: -18rem;
     font-size: 30px;
   }
-
 }

@@ -8,11 +8,7 @@ pool.query(
 );
 
 exports.Ogetrollno = (rollno, callback) => {
-  return pool.query(
-    "select * from  otp WHERE rollno = $1",
-    [rollno],
-    callback
-  );
+  return pool.query("select * from  otp WHERE rollno = $1", [rollno], callback);
 };
 
 exports.Oupdatedetails = (rollno, otp, callback) => {
@@ -23,7 +19,7 @@ exports.Oupdatedetails = (rollno, otp, callback) => {
   );
 };
 
-exports.Odatetimediff = (rollno,callback) => {
+exports.Odatetimediff = (rollno, callback) => {
   return pool.query(
     "Select rollno from otp where rollno = $1 and datetime BETWEEN NOW() - INTERVAL '24 HOURS' AND NOW()",
     [rollno],
