@@ -162,12 +162,12 @@ exports.verify = async (request, response, next) => {
         const getdiff = await Odatetimediff(request.body.rollno);
         if (getdiff.rowCount > 0) {
           response.render("layouts/visitor_details", {
-            rollno: request.session.empid,
+            empid: request.session.empid,
             message: "",
           });
         } else {
           response.render("layouts/verification", {
-            rollno: request.session.empid,
+            empid: request.session.empid,
             message: "Session Expired!",
           });
         }
@@ -201,11 +201,13 @@ exports.visitor_details = async (request, response, next) => {
         );
         if (updatedata) {
           response.render("layouts/visitor_details", {
+            empid:request.session.empid,
             message: "Successfully Submitted!",
           });
         }
       } else
         response.render("layouts/visitor_details", {
+          empid:request.session.empid,
           message: "Invalid Credentials!",
         });
     } else {

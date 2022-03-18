@@ -6,10 +6,17 @@ body {
 }
 
 #empid {
-  margin-top: 1.2rem;
-  font-size: 2vh;
+  margin-top: 1.35rem;
+  font-size: 3vh;
   margin-right: 2rem;
-  color: yellow;
+  color: white;
+}
+
+#rollno {
+  margin-top: 1.35rem;
+  font-size: 3vh;
+  margin-right: 2rem;
+  color: white;
 }
 
 .event-page {
@@ -54,8 +61,7 @@ body {
 
 .box input[type="text"],
 .box input[type="password"],
-.box input[type="email"],
-.box input[type="number"] {
+.box input[type="email"] {
   border: 0;
   background: none;
   display: block;
@@ -73,8 +79,7 @@ body {
 
 .box input[type="text"]:focus,
 .box input[type="password"]:focus,
-.box input[type="email"],
-.box input[type="number"]:focus {
+.box input[type="email"]:focus {
   width: 280px;
 }
 
@@ -84,22 +89,14 @@ body {
   display: block;
   height: 50px;
   margin-top: 5px;
-  margin-left: 32%;
-
+  margin-left: 31%;
   text-align: center;
-
   border: 2px solid #2ecc71;
-
   padding: 10px 40px;
-
   outline: none;
-
   color: white;
-
   border-radius: 50px;
-
   transition: 0.25s;
-
   cursor: pointer;
 }
 
