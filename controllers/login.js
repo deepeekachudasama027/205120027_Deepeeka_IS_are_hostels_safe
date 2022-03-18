@@ -148,7 +148,7 @@ exports.generate_otp = async (request, response, next) => {
         if(updatedata){
           response.render("layouts/generate_otp", {
             rollno:request.session.rollno,
-            message: "generatedOTP",
+            message: generatedOTP,
           })
         }
         else{
