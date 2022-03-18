@@ -2,7 +2,17 @@
 
 ## Welcome
 
-`It is an Information Security Project to ensure security of hostels from verifying entry at the gate.`
+`It is an Information Security Project to ensure security of hostels from verifying visitor at entry.`
+
+Existing Solutions Available:
+
+![image](https://user-images.githubusercontent.com/83882728/159056186-285472cb-5a95-495b-a636-bae39b5d9a71.png)
+
+`Problem with these solutions are there is no way to ensure visitors are genuine, may be they are intruders`
+
+To Resolve this Raw idea of this project:
+
+![image](https://user-images.githubusercontent.com/83882728/159055922-ced985d3-9e1f-4893-b591-d719705d3761.png)
 
 ## Tech stack used :
 
@@ -60,4 +70,7 @@ Follow the steps to Install the project
 `in browser search for`
 
 **localhost:3000**
+
+
+
 
