@@ -6,6 +6,7 @@ const {
   getmainpage,
   logout,
   generate_otp,
+  verify,
 } = require("../controllers/login");
 const { student_getdetails,
   security_getdetails} = require("../controllers/register")
@@ -27,10 +28,6 @@ router.get("/security_login",(request,response)=>{
   response.render("layouts/security_login");
 })
 
-// router.get("/login", (request, response) => {
-//   response.render("layouts/login");
-// });
-
 router.get("/role", choose_role);
 
 router.get("/student_registration", (req, res) => {
@@ -41,15 +38,14 @@ router.get("/security_registration", (req, res) => {
   res.render("layouts/security_registration");
 });
 
-// router.get("/registration", (req, res) => {
-//     res.render("layouts/registration");
-//   });
 
   router.post("/student_register", student_getdetails);
 
   router.post("/security_register", security_getdetails);
 
   router.post("/generate",generate_otp)
+
+  router.post("/verify",verify)
   
 
 router.get("/*", (request, response) => {

@@ -20,7 +20,8 @@ const {
 
 const {
 Ogetrollno,
-Oupdatedetails
+Oupdatedetails,
+Odatetimediff
 } = require("../models/otp");
 
 exports.getmainpage=async(request, response, next) => {
@@ -137,13 +138,11 @@ exports.generate_otp = async (request, response, next) => {
         const generatedOTP = otpGenerator.generate(6,{upperCase:false,specialChars:false,alphabets:false});
         const salt = await bcrypt.genSalt(10);
         const hashOTP = await bcrypt.hash(generatedOTP, salt);
-        var now = new Date().getTime();
 
       if(hashOTP){
         const updatedata = await Oupdatedetails(
           request.session.rollno,
           hashOTP,
-          now
         )
         if(updatedata){
           response.render("layouts/generate_otp", {
@@ -164,8 +163,6 @@ exports.generate_otp = async (request, response, next) => {
           message: "Something wrong happened!",
         })
       }
-        
-      
     } else {
       response.render("layouts/student_login", {
         message: "",
@@ -180,13 +177,29 @@ exports.generate_otp = async (request, response, next) => {
 exports.verify = async (request, response, next) => {
   try {
     if (request.session.loggedIn) {
-        const getmain = await mainpage(request.session.rollno);
-        response.render("layout/main", {
-          rollno: getmain.rows[0].rollno,
-        });
+        const getdata = await Ogetrollno(request.body.rollno);
+        if (getdata.rowCount > 0) {
+          const getdiff = await Odatetimediff(request.body.rollno);
+         if(getdiff.rowCount >0) {
+          response.render("layouts/verification", {
+            rollno:request.session.empid,
+            message: "Verified!",
+          })
+        
+         }
+         else
+         {
+          response.render("layouts/verification", {
+            rollno:request.session.empid,
+            message: "Session Expired!",
+          })
+         }
+        
+        }
+
       
     } else {
-      response.render("layouts/login", {
+      response.render("layouts/security_login", {
         message: "",
       });
     }
@@ -194,10 +207,6 @@ exports.verify = async (request, response, next) => {
     console.log(err);
   }
 };
-
-
-
-
 
 
 exports.logout = async (request, response, next) => {

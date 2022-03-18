@@ -7,14 +7,6 @@ pool.query(
   }
 );
 
-// exports.Sgetemail = (email, callback) => {
-//   return pool.query(
-//     "select * from  student WHERE email = $1",
-//     [email],
-//     callback
-//   );
-// };
-
 exports.Ogetrollno = (rollno, callback) => {
   return pool.query(
     "select * from  otp WHERE rollno = $1",
@@ -23,10 +15,18 @@ exports.Ogetrollno = (rollno, callback) => {
   );
 };
 
-exports.Oupdatedetails = (rollno, otp, datetime, callback) => {
+exports.Oupdatedetails = (rollno, otp, callback) => {
   return pool.query(
-    "Insert into otp (rollno,otp,datetime) values ($1,$2,to_timestamp($3 / 1000.0)) on conflict do nothing ",
-    [rollno, otp,datetime],
+    "Insert into otp (rollno,otp,datetime) values ($1,$2,NOW()) on conflict do nothing ",
+    [rollno, otp],
+    callback
+  );
+};
+
+exports.Odatetimediff = (rollno,callback) => {
+  return pool.query(
+    "Select rollno from otp where rollno = $1 and datetime BETWEEN NOW() - INTERVAL '24 HOURS' AND NOW()",
+    [rollno],
     callback
   );
 };
