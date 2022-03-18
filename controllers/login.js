@@ -7,6 +7,8 @@ const { Sselectrollno } = require("../models/student");
 
 const { Ogetrollno, Oupdatedetails, Odatetimediff } = require("../models/otp");
 
+const { Vupdatedetails } = require("../models/visitor");
+
 exports.getmainpage = async (request, response, next) => {
   try {
     if (request.session.loggedIn) {
@@ -159,7 +161,7 @@ exports.verify = async (request, response, next) => {
       if (getdata.rowCount > 0) {
         const getdiff = await Odatetimediff(request.body.rollno);
         if (getdiff.rowCount > 0) {
-          response.render("layouts/vistor_details", {
+          response.render("layouts/visitor_details", {
             rollno: request.session.empid,
             message: "",
           });

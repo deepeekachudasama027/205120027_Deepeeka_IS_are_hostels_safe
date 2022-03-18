@@ -7,6 +7,7 @@ const {
   logout,
   generate_otp,
   verify,
+  visitor_details,
 } = require("../controllers/login");
 const {
   student_getdetails,
