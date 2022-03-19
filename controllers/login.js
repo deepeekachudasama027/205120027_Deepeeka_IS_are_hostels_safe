@@ -5,7 +5,7 @@ const { Eselectempid } = require("../models/security");
 
 const { Sselectrollno } = require("../models/student");
 
-const { Ogetrollno, Oupdatedetails, Odatetimediff } = require("../models/otp");
+const { Ogetrollno, Oupdatedetails, Odatetimediff,Oupdateflag } = require("../models/otp");
 
 const { Vupdatedetails } = require("../models/visitor");
 
@@ -159,18 +159,30 @@ exports.verify = async (request, response, next) => {
     if (request.session.loggedIn) {
       const getdata = await Ogetrollno(request.body.rollno);
       if (getdata.rowCount > 0) {
-        const getdiff = await Odatetimediff(request.body.rollno);
-        if (getdiff.rowCount > 0) {
-          response.render("layouts/visitor_details", {
-            empid: request.session.empid,
-            message: "",
-          });
-        } else {
+        if(getdata.rows[0].flag == false)
+        {
+          const getdiff = await Odatetimediff(request.body.rollno);
+          if (getdiff.rowCount > 0) {
+            const update = await Oupdateflag(request.body.rollno,getdata.rows[0].datetime);
+            response.render("layouts/visitor_details", {
+              empid: request.session.empid,
+              message: "",
+            });
+          } else {
+            response.render("layouts/verification", {
+              empid: request.session.empid,
+              message: "Session Expired!",
+            });
+          }
+        }
+        else 
+        {
           response.render("layouts/verification", {
             empid: request.session.empid,
-            message: "Session Expired!",
+            message: "OTP has been used!",
           });
         }
+       
       }
     } else {
       response.render("layouts/security_login", {
